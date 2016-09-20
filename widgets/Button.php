@@ -1,8 +1,8 @@
 <?php
 
-namespace jonasw91\yii2mdl\widgets;
+namespace jonasw91\mdl\widgets;
 
-use jonasw91\yii2mdl\helpers\Html;
+use jonasw91\mdl\helpers\Html;
 use yii\helpers\Url;
 use yii\web\JsExpression;
 
@@ -24,7 +24,7 @@ use yii\web\JsExpression;
  *      key: accent, colored, primary, rippleEffect
  *
  * Class Button
- * @package jonasw91\yii2mdl\widgets
+ * @package jonasw91\mdl\widgets
  */
 class Button extends MdlWidget
 {

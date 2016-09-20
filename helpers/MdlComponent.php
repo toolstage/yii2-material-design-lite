@@ -1,6 +1,6 @@
 <?php
 
-namespace jonasw91\yii2mdl\helpers;
+namespace jonasw91\mdl\helpers;
 
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
@@ -11,7 +11,7 @@ use yii\base\Widget;
  * @link https://getmdl.io/components/index.html#badges-section
  *
  * Class MdlWidget
- * @package jonasw91\yii2mdl\widgets
+ * @package jonasw91\mdl\widgets
  *
  * @author Jonas Wehner <jonaswehner@outlook.de>
  * @version 1.0

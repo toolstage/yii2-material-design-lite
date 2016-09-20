@@ -5,15 +5,15 @@
  * Date: 01.08.2016
  * Time: 16:05
  */
-namespace jonasw91\yii2mdl\widgets;
+namespace jonasw91\mdl\widgets;
 
-use jonasw91\yii2mdl\helpers\Html;
+use jonasw91\mdl\helpers\Html;
 
 /**
  * https://getmdl.io/components/index.html#cards-section
  *
  * Class Card
- * @package jonasw91\yii2mdl\widgets
+ * @package jonasw91\mdl\widgets
  */
 class Card extends MdlWidget
 {

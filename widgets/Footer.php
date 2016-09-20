@@ -6,12 +6,12 @@
  * Time: 17:50
  */
 
-namespace jonasw91\yii2mdl\widgets;
-use jonasw91\yii2mdl\helpers\Html;
+namespace jonasw91\mdl\widgets;
+use jonasw91\mdl\helpers\Html;
 
 /**
  * Class Footer
- * @package jonasw91\yii2mdl\widgets
+ * @package jonasw91\mdl\widgets
  *
  */
 class Footer extends MdlWidget

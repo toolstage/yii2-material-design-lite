@@ -6,11 +6,11 @@
  * Time: 17:03
  */
 
-namespace jonasw91\yii2mdl\widgets;
+namespace jonasw91\mdl\widgets;
 
 
 use yii\base\Exception;
-use jonasw91\yii2mdl\helpers\Html;
+use jonasw91\mdl\helpers\Html;
 
 class Tab extends MdlWidget
 {

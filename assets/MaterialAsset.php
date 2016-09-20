@@ -1,6 +1,6 @@
 <?php
 
-namespace jonasw91\yii2mdl\assets;
+namespace jonasw91\mdl\assets;
 
 use yii\web\AssetBundle;
 
@@ -23,6 +23,6 @@ class MaterialAsset extends AssetBundle
     ];
 
     public $depends = [
-        'jonasw91\yii2mdl\assets\PolyAsset',
+        'jonasw91\mdl\assets\PolyAsset',
     ];
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace jonasw91\yii2mdl\widgets;
+namespace jonasw91\mdl\widgets;
 
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
@@ -11,14 +11,14 @@ use yii\widgets\ActiveForm;
  * @link https://getmdl.io/components/index.html#badges-section
  *
  * Class Form
- * @package jonasw91\yii2mdl\widgets
+ * @package jonasw91\mdl\widgets
  *
  * @author Jonas Wehner <jonaswehner@outlook.de>
  * @version 1.0
  */
 class Form extends ActiveForm
 {
-    public $fieldClass = 'jonasw91\yii2mdl\widgets\Field';
+    public $fieldClass = 'jonasw91\mdl\widgets\Field';
 
     /**
      * @param \yii\base\Model $model

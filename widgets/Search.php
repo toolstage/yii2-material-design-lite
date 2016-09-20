@@ -1,6 +1,6 @@
 <?php
 
-namespace jonasw91\yii2mdl\widgets;
+namespace jonasw91\mdl\widgets;
 
 use yii\base\DynamicModel;
 use yii\base\InvalidConfigException;
@@ -11,7 +11,7 @@ use yii\base\InvalidConfigException;
  * @link https://getmdl.io/components/index.html#badges-section
  *
  * Class Search
- * @package jonasw91\yii2mdl\widgets
+ * @package jonasw91\mdl\widgets
  *
  * @author Jonas Wehner <jonaswehner@outlook.de>
  * @version 1.0

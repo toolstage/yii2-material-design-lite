@@ -1,14 +1,14 @@
 <?php
 
-namespace jonasw91\yii2mdl\widgets;
+namespace jonasw91\mdl\widgets;
 
 use yii\web\JsExpression;
-use jonasw91\yii2mdl\helpers\Html;
+use jonasw91\mdl\helpers\Html;
 
 /**
  * Class Dialog
  *
- * @package jonasw91\yii2mdl\widgets
+ * @package jonasw91\mdl\widgets
  */
 class Dialog extends MdlWidget
 {

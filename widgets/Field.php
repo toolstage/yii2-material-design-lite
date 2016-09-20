@@ -1,8 +1,8 @@
 <?php
 
-namespace jonasw91\yii2mdl\widgets;
+namespace jonasw91\mdl\widgets;
 
-use jonasw91\yii2mdl\helpers\Html;
+use jonasw91\mdl\helpers\Html;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
@@ -14,14 +14,14 @@ use yii\widgets\ActiveField;
  * @link https://getmdl.io/components/index.html#badges-section
  *
  * Class Slider
- * @package jonasw91\yii2mdl\widgets
+ * @package jonasw91\mdl\widgets
  *
  * @author Jonas Wehner <jonaswehner@outlook.de>
  * @version 1.0
  */
 class Field extends ActiveField
 {
-    /* @var \jonasw91\yii2mdl\widgets\Field */
+    /* @var \jonasw91\mdl\widgets\Field */
     public $form;
 
     public $options = ['class' => 'mdl-textfield mdl-js-textfield  mdl-textfield--floating-label'];

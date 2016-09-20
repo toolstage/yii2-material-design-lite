@@ -1,7 +1,7 @@
 {
   "name": "jonasw91/yii2-material-design-lite",
   "type": "yii2-extension",
-  "version": "1.0.0-dev",
+  "version": "1.0.1-dev",
   "description": "Yii2 Material Design Lite Extension",
   "keywords": [
     "yii2",
@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "jonasw91\\yii2mdl\\": ""
+      "jonasw91\\mdl\\": ""
     }
   }
 }

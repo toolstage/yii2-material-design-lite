@@ -1,10 +1,10 @@
 <?php
 
-namespace jonasw91\yii2mdl\widgets;
+namespace jonasw91\mdl\widgets;
 
 use yii\base\InvalidConfigException;
 use yii\web\JsExpression;
-use jonasw91\yii2mdl\helpers\Html;
+use jonasw91\mdl\helpers\Html;
 
 /**
  * Description:
@@ -12,7 +12,7 @@ use jonasw91\yii2mdl\helpers\Html;
  * @link https://getmdl.io/components/index.html#badges-section
  *
  * Class Slider
- * @package jonasw91\yii2mdl\widgets
+ * @package jonasw91\mdl\widgets
  *
  * @author Jonas Wehner <jonaswehner@outlook.de>
  * @version 1.0
