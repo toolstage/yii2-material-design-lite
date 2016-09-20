@@ -1,0 +1,31 @@
+{
+  "name": "jonasw91/yii2-material-design-lite",
+  "type": "yii2-extension",
+  "version": "1.0.0-dev",
+  "description": "Yii2 Material Design Lite Extension",
+  "keywords": [
+    "yii2",
+    "Material Design Lite",
+    "extension"
+  ],
+  "homepage": "https://github.com/JonasW91/yii2-material-design-light",
+  "license": "MIT License",
+  "authors": [
+    {
+      "name": "Jonas Wehner",
+      "email": "wehner.jonas91@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "issues": "https://github.com/JonasW91/yii2-material-design-light/issues",
+  "minimum-stability": "stable",
+  "require": {
+    "yiisoft/yii2": "*",
+    "bower-asset/dialog-polyfill": "0.4.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "jonasw91\\yii2mdl\\": ""
+    }
+  }
+}
