@@ -44,13 +44,6 @@ abstract class BaseMdlWidget extends Widget implements MdlComponent
      */
     public static $autoIdPrefix = 'mldWidget';
 
-    public function init()
-    {
-        parent::init();
-
-        $this->view->registerAssetBundle(MaterialAsset::className());
-    }
-
     /**
      * Default configuration of MDL widget components
      *

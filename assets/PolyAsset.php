@@ -10,9 +10,10 @@ use yii\web\AssetBundle;
  * Date: 20.09.2016
  * Time: 16:27
  */
+
 class PolyAsset extends AssetBundle
 {
-    public $basePath = '@vendor/bower/dialog-polyfill';
+    public $sourcePath = '@vendor/bower/dialog-polyfill';
 
     public $css = [
         'dialog-polyfill.css',
@@ -20,10 +21,8 @@ class PolyAsset extends AssetBundle
 
     public $js = [
         'dialog-polyfill.js',
-        'suite.js',
     ];
 
     public $depends = [
-        'yii\web\YiiAsset',
     ];
 }

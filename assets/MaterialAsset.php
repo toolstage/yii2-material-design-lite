@@ -2,6 +2,7 @@
 
 namespace jonasw91\mdl\assets;
 
+use jonasw91\assets\PolyAsset;
 use yii\web\AssetBundle;
 
 /**
@@ -12,17 +13,16 @@ use yii\web\AssetBundle;
  */
 class MaterialAsset extends AssetBundle
 {
-    public $basePath = '@vendor/yii2-material-design-lite/assets';
+    public $sourcePath = '@vendor/bower/material-design-lite/';
 
     public $css = [
-        'css/mdl.css',
+        'material.css',
+        'https://fonts.googleapis.com/icon?family=Material+Icons',
+        'https://code.getmdl.io/1.2.1/material.indigo-pink.min.css'
     ];
 
     public $js = [
-        'js/mdl.js',
-    ];
-
-    public $depends = [
-        'jonasw91\mdl\assets\PolyAsset',
+        'material.js',
+        'https://code.getmdl.io/1.2.1/material.min.js'
     ];
 }

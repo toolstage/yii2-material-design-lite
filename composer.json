@@ -21,7 +21,8 @@
   "minimum-stability": "stable",
   "require": {
     "yiisoft/yii2": "*",
-    "bower-asset/dialog-polyfill": "0.4.4"
+    "bower-asset/dialog-polyfill": "0.4.4",
+    "bower-asset/material-design-lite": "1.2.1"
   },
   "autoload": {
     "psr-4": {

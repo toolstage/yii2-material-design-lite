@@ -1,0 +1,21 @@
+/* Form */
+.mdl-textfield, form {
+    width: 90%;
+}
+
+.mdl-textfield__input {
+    width: 100%;
+}
+
+form {
+    margin: auto;
+}
+
+.mdl-textfield.has-error .mdl-textfield__error {
+    visibility: visible;
+}
+
+/* Menu */
+.mdl-menu {
+    z-index: 0;
+}
