@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+}
+
 /* Form */
 .mdl-textfield, form {
     width: 90%;
@@ -18,4 +22,107 @@ form {
 /* Menu */
 .mdl-menu {
     z-index: 0;
+}
+
+/* Nav */
+.mdl-layout__drawer .mdl-navigation .mdl-navigation .mdl-navigation__link {
+    padding: 0 !important;
+}
+
+.mdl-navigation__link a {
+    color: black;
+}
+
+/* Nav Drawer*/
+.mdl-layout__drawer .mdl-navigation {
+    margin: 0;
+    padding: 0;
+}
+
+.mdl-layout__drawer > .mdl-navigation__link, .mdl-layout__drawer > .mdl-navigation {
+    margin: 0;
+    padding: 0;
+}
+
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link a {
+    vertical-align: text-top;
+}
+
+.mdl-layout__drawer .mdl-navigation {
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+    transition: padding .3s;
+}
+
+/* NAV HEADER*/
+header .mdl-navigation__link + a, header.mdl-layout__header .mdl-navigation button {
+    color: white;
+    margin: 17px;
+}
+
+header .mdl-layout__header-row > ul.mdl-navigation .mdl-navigation.parent-dropdown {
+    position: absolute;
+    visibility: hidden;
+    color: black;
+    background: white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+header .mdl-navigation ul.mdl-navigation {
+    margin-left: -24px;
+}
+
+header .mdl-navigation ul.mdl-navigation .expand-menu-button {
+    color: black;
+}
+
+header .mdl-navigation li {
+    position: relative;
+    opacity: 1;
+}
+
+header .mdl-navigation.parent-dropdown {
+    flex-direction: column;
+}
+
+header .mdl-navigation .mdl-navigation .mdl-navigation__link:hover {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+header .mdl-navigation .mdl-navigation__link .mdl-navigation__link a {
+    display: inherit;
+    line-height: 24px;
+    padding: 20px 24px;
+}
+
+header .mdl-navigation .mdl-navigation__link .mdl-navigation__link {
+    width: 100%;
+    padding: 0;
+}
+
+header .mdl-navigation div.link-wrapper {
+    display: flex;
+}
+
+/* Tabs */
+header .mdl-layout__tab-bar-container {
+    z-index: -1;
+}
+
+/* Content */
+.mdl-layout__content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* OTHER SETTING */
+
+.pull-left {
+    float: left !important;
+}
+
+.pull-right {
+    float: right !important;
 }

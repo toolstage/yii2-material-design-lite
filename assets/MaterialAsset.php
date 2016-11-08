@@ -18,11 +18,9 @@ class MaterialAsset extends AssetBundle
     public $css = [
         'material.css',
         'https://fonts.googleapis.com/icon?family=Material+Icons',
-        'https://code.getmdl.io/1.2.1/material.indigo-pink.min.css'
     ];
 
     public $js = [
         'material.js',
-        'https://code.getmdl.io/1.2.1/material.min.js'
     ];
 }

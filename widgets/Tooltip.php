@@ -3,7 +3,6 @@
 namespace jonasw91\mdl\widgets;
 
 use yii\base\InvalidConfigException;
-use yii\web\JsExpression;
 use jonasw91\mdl\helpers\Html;
 
 /**

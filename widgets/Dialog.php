@@ -51,8 +51,6 @@ class Dialog extends MdlWidget
         if (!isset($this->mdlOptions['toggleButtonOptions']['id'])) {
             $this->mdlOptions['toggleButtonOptions']['id'] = $this->getId() . 'ToggleButton';
         }
-        $this->registerDialogScript();
-        $this->registerDialogStyle();
     }
 
     public function run()
@@ -87,7 +85,14 @@ class Dialog extends MdlWidget
             $actionClass .= ' mdl-dialog__actions--full-width';
         }
         $action = Html::tag('div', $actions, ['class' => $actionClass]);
-        return $dialogButton . Html::tag('dialog', $header . $content . $action, $this->options);
+
+        $dialog = Html::tag('dialog', $header . $content . $action, $this->options);
+        $this->view->registerJs(new JsExpression('$("body").append(\'' . $dialog . '\')'));
+
+        $this->registerDialogScript();
+        $this->registerDialogStyle();
+
+        return $dialogButton;
     }
 
     protected function registerDialogScript()
