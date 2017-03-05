@@ -72,7 +72,7 @@ class Layout extends MdlWidget
      *          'label' => 'Example',
      *          'tabContent' => [
      *              'url' => ['index'],
-     *              'parmas' => [...]
+     *              'params' => [...]
      *          ]
      *          'options' => [
      *              'class' => 'test'
@@ -100,6 +100,12 @@ class Layout extends MdlWidget
     public function init()
     {
         parent::init();
+
+        $this->view->registerCss("
+            ul.mdl-navigation {
+                padding-left:0;
+            }
+        ");
     }
 
     public function run()
@@ -141,11 +147,9 @@ class Layout extends MdlWidget
                     'class' => 'link-wrapper'
                 ]);
             }
-            $items .= Html::tag('li', $linkWrapper . Html::a(($this->encodeLabels ? utf8_encode($label) : $label), $url, []) . $childItems, array_merge($options, [
-                'class' => 'mdl-navigation__link'
-            ]));
+            $items .= $linkWrapper . Html::a(($this->encodeLabels ? utf8_encode($label) : $label), $url, ['class' => 'mdl-navigation__link']) . $childItems;
         }
-        $menu = Html::tag('ul', $items, [
+        $menu = Html::tag('nav', $items, [
             'class' => 'mdl-navigation'
         ]);
 
@@ -202,7 +206,7 @@ class Layout extends MdlWidget
             $title = Html::tag('span', $this->title, [
                 'class' => 'mdl-layout-title'
             ]);
-            $visibleHeader = Html::tag('div', $title . $spacer . '', [
+            $visibleHeader = Html::tag('div', (!$this->fixedDrawer ? $title : ""). $spacer . '', [
                 'class' => 'mdl-layout__header-row'
             ]);
         }
@@ -255,7 +259,7 @@ class Layout extends MdlWidget
         }
 
         $footer = '';
-        $main = Html::tag('main', $this->content . $footer, [
+        $main = Html::tag('main', Html::tag('div', $this->content . $footer, ['class' => 'container']), [
             'class' => 'mdl-layout__content'
         ]);
 

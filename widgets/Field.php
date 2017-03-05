@@ -24,7 +24,7 @@ class Field extends ActiveField
     /* @var \jonasw91\mdl\widgets\Field */
     public $form;
 
-    public $options = ['class' => 'mdl-textfield mdl-js-textfield  mdl-textfield--floating-label'];
+    public $options = ['class' => 'mdl-textfield mdl-js-textfield  mdl-textfield--floating-label mdl-cell mdl-cell--12-col '];
 
     public $inputOptions = ['class' => 'mdl-textfield__input'];
 

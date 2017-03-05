@@ -61,9 +61,9 @@ class Button extends MdlWidget
         'label' => 'Button',
         'icon' => null,
         'effects' => [
-            'accent' => false,
+            'accent' => true,
             'colored' => false,
-            'primary' => false,
+            'primary' => true,
             'rippleEffect' => false,
         ]
     ];

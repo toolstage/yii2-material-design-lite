@@ -33,10 +33,15 @@ class Menu extends MdlWidget
         ],
         'menuButtonMdlOptions' => [
             'icon' => 'more_vert',
-            'label' => ''
+            'label' => '',
+            'effects' => [
+                'rippleEffect' => true,
+                'colored' => true
+            ]
         ],
         'effects' => [
-            'rippleEffect' => true
+            'rippleEffect' => true,
+            'colored' => true
         ]
     ];
 
@@ -58,8 +63,6 @@ class Menu extends MdlWidget
         parent::init();
 
         $this->initMdlComponent();
-
-        $this->registerMenuStyle();
     }
 
     /**
@@ -71,12 +74,11 @@ class Menu extends MdlWidget
             'options' => array_merge(['id' => $this->options['id']], $this->mdlOptions['menuButtonOptions']),
             'mdlOptions' => $this->mdlOptions['menuButtonMdlOptions'],
         ]);
+
         $effects = ' ';
         if ($this->mdlOptions['effects']['rippleEffect']) {
             $effects .= 'mdl-js-ripple-effect';
         }
-        //var_dump($this->items);
-
         $elements = $button . \yii\widgets\Menu::widget([
                 'items' => $this->items,
                 'linkTemplate' => '<a class="mdl-menu__item" href="{url}">{label}</a>',
@@ -92,14 +94,5 @@ class Menu extends MdlWidget
         return Html::tag('div', $elements, [
             'class' => 'menu-wrapper'
         ]);
-    }
-
-    protected function registerMenuStyle()
-    {
-        $css = '
-            .menu-wrapper {
-            }
-        ';
-        $this->view->registerCss($css);
     }
 }

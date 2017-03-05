@@ -3,9 +3,6 @@ a {
 }
 
 /* Form */
-.mdl-textfield, form {
-    width: 90%;
-}
 
 .mdl-textfield__input {
     width: 100%;
@@ -125,4 +122,10 @@ header .mdl-layout__tab-bar-container {
 
 .pull-right {
     float: right !important;
+}
+
+
+/* CARD */
+.mdl-card__supporting-text {
+    width: 100%;
 }

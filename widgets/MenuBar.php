@@ -47,7 +47,6 @@ class MenuBar extends MdlWidget
 
         $this->initMdlComponent();
 
-        $this->registerMenuBarStyle();
     }
 
     /**
@@ -60,19 +59,5 @@ class MenuBar extends MdlWidget
             'options' => $this->mdlOptions['menuOptions'],
             'mdlOptions' => $this->mdlOptions['menuMdlOptions'],
         ]), $this->options);
-    }
-
-    protected function registerMenuBarStyle()
-    {
-        $css = '
-               .bar {
-                box-sizing: border-box;
-                background: #3F51B5;
-                color: white;
-                width: 100%;
-                padding: 16px;
-              }
-        ';
-        $this->view->registerCss($css);
     }
 }

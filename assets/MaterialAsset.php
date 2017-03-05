@@ -16,11 +16,10 @@ class MaterialAsset extends AssetBundle
     public $sourcePath = '@vendor/bower/material-design-lite/';
 
     public $css = [
-        'material.css',
         'https://fonts.googleapis.com/icon?family=Material+Icons',
     ];
 
     public $js = [
-        'material.js',
+        'material.js'
     ];
 }

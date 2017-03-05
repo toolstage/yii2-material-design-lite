@@ -54,22 +54,17 @@ class SnackBar extends MdlWidget
         $this->options['aria-relevant'] = 'text';
 
         if (!is_null($this->mdlOptions['showButton'])) {
-            $this->registerSnackBarScript();
+//            $this->registerSnackBarScript();
         }
     }
 
     public function run()
     {
-        if (!self::$initialized) {
-            self::$initialized = true;
+        $text = Html::tag('div', '', ['class' => 'mdl-snackbar__text']);
+        $action = Html::button('', ['class' => 'mdl-snackbar__action']);
 
-            $text = Html::tag('div', '', ['class' => 'mdl-snackbar__text']);
-            $action = Html::button('', ['class' => 'mdl-snackbar__action']);
-
-            return Html::tag('div', $text . $action
-                , $this->options);
-        }
-        return '';
+        return Html::tag('div', $text . $action
+            , $this->options);
     }
 
     protected function registerSnackBarScript()

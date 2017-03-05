@@ -66,12 +66,14 @@ class Dialog extends MdlWidget
         $header = Html::tag('h4', $this->mdlOptions['header'], ['class' => 'mdl-dialog__title']);
         $content = Html::tag('div', $this->mdlOptions['content'], ['class' => 'mdl-dialog__content']);
         $actions = '';
+
         foreach ($this->mdlOptions['actions'] as $action) {
             $actions .= Button::widget([
                 'options' => $action['options'],
                 'mdlOptions' => $action['mdlOptions']
             ]);
         }
+
         $actions .= Button::widget([
             'options' => [
                 'class' => 'close'
@@ -80,6 +82,7 @@ class Dialog extends MdlWidget
                 'label' => 'Abbrechen'
             ]
         ]);
+
         $actionClass = 'mdl-dialog__actions';
         if ($this->mdlOptions['type'] == self::TYPE_FULL_WIDTH_ACTIONS) {
             $actionClass .= ' mdl-dialog__actions--full-width';
@@ -87,8 +90,11 @@ class Dialog extends MdlWidget
         $action = Html::tag('div', $actions, ['class' => $actionClass]);
 
         $dialog = Html::tag('dialog', $header . $content . $action, $this->options);
-        $this->view->registerJs(new JsExpression('$("body").append(\'' . $dialog . '\')'));
+        $string = ((str_replace(["\n", "\r"], "", $dialog)));
 
+        echo ($string);
+
+//        echo "<pre>" . htmlspecialchars(var_dump(str_replace(["\n","\r"],"",$dialog))) . "</pre>";
         $this->registerDialogScript();
         $this->registerDialogStyle();
 
@@ -104,11 +110,20 @@ class Dialog extends MdlWidget
                 dialogPolyfill.registerDialog (dialog' . $this->options['id'] . ');
             }
             showDialogButton' . $this->mdlOptions['toggleButtonOptions']['id'] . '.addEventListener("click",function(){
-                dialog' . $this->options['id'] . '.showModal();
+                dialog' . $this->options['id'] . '.showModal();                
             });
             dialog' . $this->options['id'] . '.querySelector(".close").addEventListener("click",function() {
                 dialog' . $this->options['id'] . '.close();
+            });           
+            
+            $("body").click(function(e) {
+                $(' . $this->options['id'] . ').addClass("animated bounce");
             });
+            
+            $(' . $this->options['id'] . ').one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function() {
+                $(' . $this->options['id'] . ').removeClass("animated bounce");
+            });
+            
         ');
         $this->view->registerJs($js);
     }

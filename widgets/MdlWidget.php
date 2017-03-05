@@ -18,6 +18,10 @@ use yii\base\InvalidConfigException;
  */
 class MdlWidget extends BaseMdlWidget
 {
+    public $model;
+
+    public $attribute;
+
     /**
      * @throws InvalidConfigException
      */

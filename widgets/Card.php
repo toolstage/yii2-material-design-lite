@@ -51,14 +51,10 @@ class Card extends MdlWidget
 
     public $supportingText;
 
-    public $options = [
-        'class' => 'mdl-card'
-    ];
-
     public function init()
     {
         parent::init();
-        $this->options['class'] .= ' mdl-shadow--' . $this->shadowDepth . 'dp';
+        $this->options['class'] = 'mdl-card mdl-shadow--' . $this->shadowDepth . 'dp';
 
         switch ($this->type) {
             case self::TYPE_WIDE:
@@ -72,6 +68,12 @@ class Card extends MdlWidget
             default:
                 break;
         }
+        $options = array_merge($this->options, [
+            'id' => $this->id
+        ]);
+        echo Html::beginTag('div', ['class' => 'card-wrapper mdl-cell mdl-cell--12-col mdl-grid']);
+        echo Html::beginTag('div', $options);
+
     }
 
     public function run()
@@ -128,13 +130,10 @@ class Card extends MdlWidget
 
         $this->view->registerCss($css);
 
-        $card = Html::tag('div',
-            $content,
-            array_merge($this->options, [
-                'id' => $this->id
-            ]));
+        echo $content;
 
-        return $card;
+        echo Html::endTag('div');
+        echo Html::endTag('div');
     }
 
     /**
@@ -144,8 +143,8 @@ class Card extends MdlWidget
      */
     private function renderTitle()
     {
-        $css = '#' . $this->id . ', #' . $this->id . ' * {
-                width: auto;
+        $css = '#' . $this->id . ', #' . $this->id . '  {
+                width: 100%;
         }
         ';
         if (!is_null($this->width)) {

@@ -17,6 +17,7 @@ class MdlAsset extends AssetBundle
 
     public $css = [
         'css/mdl.css',
+        'css/layouts/custom_bootstrap.css',
     ];
 
     public $js = [
@@ -26,5 +27,7 @@ class MdlAsset extends AssetBundle
     public $depends = [
         'jonasw91\mdl\assets\MaterialAsset',
         'jonasw91\mdl\assets\PolyAsset',
+        'jonasw91\mdl\assets\AnimateAsset',
+        'jonasw91\mdl\assets\BrandAsset',
     ];
 }

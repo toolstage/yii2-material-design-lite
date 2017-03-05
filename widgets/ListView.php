@@ -89,6 +89,7 @@ class ListView extends \yii\widgets\ListView implements MdlComponent
                 'widget' => $this,
             ], $this->viewParams));
         } else {
+            var_dump("HIER");die;
             $content = call_user_func($this->itemView, $model, $key, $index, $this);
         }
         if (!is_null($this->mdlOptions)) {
@@ -98,7 +99,7 @@ class ListView extends \yii\widgets\ListView implements MdlComponent
                     if (is_string($primaryContent)) {
                         $content = $primaryContent;
                     } else {
-                        $content = call_user_func($primaryContent, $model, $key, $index, $this);
+//                        $content = call_user_func($primaryContent, $model, $key, $index, $this);
                     }
                 }
                 $content = Html::tag('span', $content);
@@ -123,6 +124,7 @@ class ListView extends \yii\widgets\ListView implements MdlComponent
                         foreach ($menu['items'] as $item) {
                             if (is_array($item) && key_exists('url', $item)) {
                                 if (is_object($item['url'])) {
+
                                     $uri = call_user_func($item['url'], $model, $key, $index, $this);
                                     $item['url'] = $uri;
                                 }
