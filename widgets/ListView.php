@@ -58,6 +58,7 @@ class ListView extends \yii\widgets\ListView implements MdlComponent
                 $this->mdlOptions[$option] = $value;
             }
         }
+
         foreach ($this->defaultItemOptions as $option => $value) {
             if (!isset($this->itemOptions[$option])) {
                 $this->itemOptions[$option] = $value;
@@ -89,7 +90,6 @@ class ListView extends \yii\widgets\ListView implements MdlComponent
                 'widget' => $this,
             ], $this->viewParams));
         } else {
-            var_dump("HIER");die;
             $content = call_user_func($this->itemView, $model, $key, $index, $this);
         }
         if (!is_null($this->mdlOptions)) {
@@ -102,7 +102,6 @@ class ListView extends \yii\widgets\ListView implements MdlComponent
 //                        $content = call_user_func($primaryContent, $model, $key, $index, $this);
                     }
                 }
-                $content = Html::tag('span', $content);
             }
             if (isset($this->mdlOptions['icon'])) {
                 $icon = $this->mdlOptions['icon'];
@@ -159,7 +158,7 @@ class ListView extends \yii\widgets\ListView implements MdlComponent
         }
 
         $options = $this->itemOptions;
-        $tag = ArrayHelper::remove($options, 'tag', 'div');
+        $tag = ArrayHelper::remove($options, 'tag', 'li');
         $options['data-key'] = is_array($key) ? json_encode($key, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) : (string)$key;
 
         return Html::tag($tag, $content, $options);

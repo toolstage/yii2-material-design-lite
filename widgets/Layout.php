@@ -52,7 +52,7 @@ class Layout extends MdlWidget
      * 'tabs' => [
      *      [
      *          'label' => 'Example',
-     *          'tabContent' => 'test'
+     *          'tabContent' => 'test',
      *          'options' => [
      *              'class' => 'test'
      *          ],
@@ -96,6 +96,8 @@ class Layout extends MdlWidget
     public $content = '';
 
     public $encodeLabels = true;
+
+    public $showMenuOnHeader = true;
 
     public function init()
     {
@@ -160,7 +162,12 @@ class Layout extends MdlWidget
             ]);
         }
 
-        $headerRow = Html::tag('div', $topHeader . $spacer . $menu, [
+        $headerMenu = '';
+        if ($this->hasHeader && ($this->showMenuOnHeader)) {
+            $headerMenu = $menu;
+        }
+
+        $headerRow = Html::tag('div', $topHeader . $spacer . $headerMenu, [
             'class' => 'mdl-layout__header-row'
         ]);
 
@@ -206,7 +213,7 @@ class Layout extends MdlWidget
             $title = Html::tag('span', $this->title, [
                 'class' => 'mdl-layout-title'
             ]);
-            $visibleHeader = Html::tag('div', (!$this->fixedDrawer ? $title : ""). $spacer . '', [
+            $visibleHeader = Html::tag('div', (!$this->fixedDrawer ? $title : "") . $spacer . '', [
                 'class' => 'mdl-layout__header-row'
             ]);
         }

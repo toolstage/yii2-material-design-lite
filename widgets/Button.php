@@ -60,11 +60,12 @@ class Button extends MdlWidget
         'recall' => '',
         'label' => 'Button',
         'icon' => null,
+        'tooltip' => null,
         'effects' => [
             'accent' => true,
             'colored' => false,
             'primary' => true,
-            'rippleEffect' => false,
+            'rippleEffect' => true,
         ]
     ];
 
@@ -83,7 +84,7 @@ class Button extends MdlWidget
      * @var array Widget effects
      */
     protected $effects = [
-        'accent' => 'mdl-button--primary',
+        'accent' => 'mdl-button--accent',
         'colored' => 'mdl-button--colored',
         'primary' => 'mdl-button--primary',
         'rippleEffect' => 'mdl-js-ripple-effect',
@@ -110,12 +111,6 @@ class Button extends MdlWidget
                 });'));
             }
         }
-
-        $icon = '';
-        if (!is_null($mdlOptions['icon']) && is_string($mdlOptions['icon'])) {
-            $icon = Html::tag('i', $mdlOptions['icon'], ['class' => 'material-icons']) . ' ';
-        }
-
         // set effects
         foreach ($this->effects as $effect => $value) {
             if (isset($mdlOptions['effects'][$effect]) && $mdlOptions['effects'][$effect]) {
@@ -129,10 +124,33 @@ class Button extends MdlWidget
      */
     public function run()
     {
+        $tooltip = '';
+        if (isset($this->mdlOptions['tooltip']['text'])) {
+            $type = Tooltip::TYPE_DEFAULT;
+            $position = Tooltip::POSITION_TOP;
+            if (isset($this->mdlOptions['tooltip']['type'])) {
+                $type = $this->mdlOptions['tooltip']['type'];
+            }
+            if (isset($this->mdlOptions['tooltip']['position'])) {
+                $position = $this->mdlOptions['tooltip']['position'];
+            }
+            $tooltip = Tooltip::widget([
+                'mdlOptions' => [
+                    'referenceID' => $this->id,
+                    'text' => $this->mdlOptions['tooltip']['text'],
+                    'type' => $type,
+                    'position' => $position
+                ]
+            ]);
+        }
+
+
         $icon = Html::tag('i', $this->mdlOptions['icon'], [
             'class' => 'material-icons'
         ]);
+
+
         $label = Html::tag('span', $this->mdlOptions['label']);
-        return Html::button($icon . $label, $this->options);
+        return Html::button($icon . $label . $tooltip, $this->options);
     }
 }

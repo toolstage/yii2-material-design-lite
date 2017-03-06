@@ -12,7 +12,7 @@ namespace jonasw91\mdl\widgets;
 use yii\base\Exception;
 use jonasw91\mdl\helpers\Html;
 
-class Tab extends MdlWidget
+class TabView extends MdlWidget
 {
     public $tabs;
 

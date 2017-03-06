@@ -108,10 +108,13 @@ header .mdl-layout__tab-bar-container {
     z-index: -1;
 }
 
+.mdl-tabs__panel {
+    margin: 2em auto;
+}
+
 /* Content */
 .mdl-layout__content {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 40px 0;
 }
 
 /* OTHER SETTING */
@@ -124,8 +127,29 @@ header .mdl-layout__tab-bar-container {
     float: right !important;
 }
 
+a:hover {
+    text-decoration: none;
+}
 
 /* CARD */
 .mdl-card__supporting-text {
     width: 100%;
+}
+
+/* List */
+.mdl-layout__tab:hover, .mdl-layout__tab:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
+li.mdl-list__item i.material-icons {
+    text-align: center;
+    color:white;
+}
+
+li.mdl-list__item {
+    width: 100%;
+    padding:0;
+    margin: .5em auto;
+    border-top: 1px solid rgba(200, 200, 200, 1);
 }
