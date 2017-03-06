@@ -104,12 +104,10 @@ class Button extends MdlWidget
         if (!is_null($mdlOptions['action'])) {
             if (strtoupper($mdlOptions['method']) === 'GET' || strtoupper($mdlOptions['method']) === 'POST') {
                 $this->view->registerJs(new JsExpression('$("#' . $this->options['id'] . '").click(function (){
-                    $.ajax({
-                          method: "' . strtoupper($mdlOptions['method']) . '",
-                          url: "' . Url::toRoute($mdlOptions['action']) . '"
-                    }).success(' . $mdlOptions['recall'] . ');
+                    window.location.href = "' . Url::toRoute($mdlOptions['action']) . '";
                 });'));
             }
+            $this->registerDisabledOnClick();
         }
         // set effects
         foreach ($this->effects as $effect => $value) {
@@ -144,13 +142,24 @@ class Button extends MdlWidget
             ]);
         }
 
-
         $icon = Html::tag('i', $this->mdlOptions['icon'], [
             'class' => 'material-icons'
         ]);
 
-
         $label = Html::tag('span', $this->mdlOptions['label']);
+
         return Html::button($icon . $label . $tooltip, $this->options);
+    }
+
+    private function registerDisabledOnClick()
+    {
+        $this->view->registerJs(new JsExpression('
+            var button' . str_replace('-', '', $this->options['id']) . ' =  $("#' . $this->options['id'] . '");
+            button' . str_replace('-', '', $this->options['id']) . '.click(function(){
+                $(this).prop ("disabled","true");
+                console.log("HELLO");
+                return false;
+            });
+        '));
     }
 }

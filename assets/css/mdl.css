@@ -51,6 +51,19 @@ form {
     transition: padding .3s;
 }
 
+/* Drawer */
+.mdl-layout__drawer .mdl-navigation a.mdl-navigation__link {
+    padding: 0;
+}
+.mdl-layout__drawer .mdl-navigation a.mdl-navigation__link button.mdl-button{
+    width: 100%;
+    height: 100%;
+    padding: 16px 0;
+    margin: 0;
+}
+
+
+
 /* NAV HEADER*/
 header .mdl-navigation__link + a, header.mdl-layout__header .mdl-navigation button {
     color: white;
@@ -142,14 +155,100 @@ a:hover {
     color: inherit;
 }
 
+.mdl-list__item--three-line {
+    height: auto;
+    min-height: 88px;
+}
+
+.mdl-list__item--three-line .mdl-list__item-text-body {
+    max-width: 490px;
+}
+
+.mdl-list__item-text-body ul {
+    list-style: none;
+}
+
 li.mdl-list__item i.material-icons {
     text-align: center;
-    color:white;
+    color: white;
 }
 
 li.mdl-list__item {
     width: 100%;
-    padding:0;
+    padding: 0;
     margin: .5em auto;
     border-top: 1px solid rgba(200, 200, 200, 1);
+}
+
+i.mdl-list__item-avatar.material-icons {
+    height: 50px;
+    width: 50px;
+}
+
+/* Pagination */
+.mdl-list__pagination li.active a.mdl-button {
+    color: white;
+}
+
+.mdl-list__pagination li {
+    float: left;
+    list-style: none;
+    display: inline-block;
+    margin: 1em .2em;
+}
+
+.mdl-list__pagination-prev {
+}
+
+.mdl-list__pagination-next {
+}
+
+.mdl-list__pagination-prev.disabled, .mdl-list__pagination-next.disabled {
+    display: none;
+}
+
+.mdl-list__pagination-item {
+}
+/* Button */
+
+.mdl-action-bar {
+    margin: 1em auto;
+}
+
+.mdl-action-bar .mdl-button {
+    margin: .125em;
+}
+
+/* Media Queries */
+@media all and (max-width: 480px) {
+    /* Button */
+    .mdl-button {
+        width: 100%;
+    }
+    /* List */
+    .mdl-list__item.mdl-list__item--three-line {
+        padding: 1em 0;
+        display: list-item;
+        height: auto;
+    }
+
+    .mdl-list__item-avatar {
+        display: block;
+    }
+
+    .mdl-list__item-title {
+        margin-top: 1em;
+        float: left;
+    }
+    .mdl-list__item--three-line .mdl-list__item-primary-content, .mdl-list__item--three-line .mdl-list__item-secondary-content {
+        height: auto;
+    }
+
+
+    .mdl-list__item--three-line .mdl-list__item-text-body {
+        padding: 1em 0 .1em;
+        display: block;
+        clear: both;
+        height: auto;
+    }
 }

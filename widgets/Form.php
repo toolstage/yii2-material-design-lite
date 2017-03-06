@@ -3,6 +3,7 @@
 namespace jonasw91\mdl\widgets;
 
 use yii\helpers\ArrayHelper;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
 
 /**
@@ -40,5 +41,23 @@ class Form extends ActiveForm
             'attribute' => $attribute,
             'form' => $this,
         ]));
+    }
+
+    public function init()
+    {
+        parent::init();
+
+        $this->registerDisabledOnClick();
+    }
+
+    private function registerDisabledOnClick()
+    {
+        $this->view->registerJs(new JsExpression('
+            var form' . str_replace('-', '', $this->options['id']) . ' =  $("#' . $this->options['id'] . '");
+            form' . str_replace('-', '', $this->options['id']) . '.on("beforeSubmit", function(){
+                $("button[type=\'submit\']").prop ("disabled","true");
+                return true;
+            });
+        '));
     }
 }

@@ -29,5 +29,6 @@ class MdlAsset extends AssetBundle
         'jonasw91\mdl\assets\PolyAsset',
         'jonasw91\mdl\assets\AnimateAsset',
         'jonasw91\mdl\assets\BrandAsset',
+        'yii\web\JqueryAsset'
     ];
 }

@@ -38,12 +38,38 @@ class ListView extends \yii\widgets\ListView implements MdlComponent
 
     public $mdlOptions = [];
 
+    public $pager = [
+        'prevPageCssClass' => 'mdl-list__pagination-prev',
+        'nextPageCssClass' => 'mdl-list__pagination-next',
+        'linkOptions' => [
+            'class' => 'mdl-list__pagination-item material-icons mdl-button--icon mdl-button mdl-js-button mdl-button--raised mdl-button--primary'
+        ],
+        'options' => [
+            'class' => 'mdl-list__pagination'
+        ]
+    ];
+
     /**
      * @throws InvalidConfigException
      */
     public function init()
     {
         parent::init();
+
+        $this->pager['nextPageLabel'] = Button::widget([
+            'mdlOptions' => [
+                'label' => ' ',
+                'icon' => 'navigate_next',
+                'type' => Button::TYPE_ICON
+            ]
+        ]);
+        $this->pager['prevPageLabel'] = Button::widget([
+            'mdlOptions' => [
+                'label' => ' ',
+                'icon' => 'navigate_before',
+                'type' => Button::TYPE_ICON
+            ]
+        ]);
 
         $this->validateConfiguration();
     }
@@ -123,7 +149,6 @@ class ListView extends \yii\widgets\ListView implements MdlComponent
                         foreach ($menu['items'] as $item) {
                             if (is_array($item) && key_exists('url', $item)) {
                                 if (is_object($item['url'])) {
-
                                     $uri = call_user_func($item['url'], $model, $key, $index, $this);
                                     $item['url'] = $uri;
                                 }
@@ -154,14 +179,14 @@ class ListView extends \yii\widgets\ListView implements MdlComponent
                 }
                 $action = Html::a($icon, $action, ['class' => 'mdl-list__item-secondary-action']);
             }
-            $content = Html::tag('span', $content, ['class' => 'mdl-list__item-primary-content']) . $action;
+//            $content = Html::tag('span', $content, ['class' => 'mdl-list__item-primary-content']) . $action;
         }
 
         $options = $this->itemOptions;
         $tag = ArrayHelper::remove($options, 'tag', 'li');
         $options['data-key'] = is_array($key) ? json_encode($key, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) : (string)$key;
 
-        return Html::tag($tag, $content, $options);
+        return $content;
     }
 
     /**

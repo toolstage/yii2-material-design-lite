@@ -26,6 +26,8 @@ class Menu extends MdlWidget
 
     public $items = [];
 
+    public $itemsOptions = [];
+
     protected $defaultMdlOptions = [
         'type' => self::TYPE_LOWER_LEFT,
         'menuButtonOptions' => [
@@ -79,15 +81,16 @@ class Menu extends MdlWidget
         if ($this->mdlOptions['effects']['rippleEffect']) {
             $effects .= 'mdl-js-ripple-effect';
         }
-        $elements = $button . \yii\widgets\Menu::widget([
+        $elements = $button . BaseMenu::widget([
                 'items' => $this->items,
-                'linkTemplate' => '<a class="mdl-menu__item" href="{url}">{label}</a>',
+                'linkTemplate' => '<a class="mdl-menu__item" href="{url}" {options}}>{label}</a>',
                 'options' => [
                     'class' => $this->mdlOptions['type'] . $effects,
                     'for' => $this->options['id']
                 ],
+                'encodeLabels' => false,
                 'itemOptions' => [
-                    'class' => '',
+                    'class' => $this->itemsOptions,
                 ]
             ]);
 

@@ -1,4 +1,4 @@
-$(document).ready(function ($) {
+jQuery(document).ready(function ($) {
     /**
      * Sidebar Dropdown
      *  TODO find default solution
