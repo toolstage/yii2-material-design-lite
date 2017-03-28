@@ -12,11 +12,9 @@ namespace jonasw91\mdl\widgets;
 use yii\base\Exception;
 use jonasw91\mdl\helpers\Html;
 
-class TabView extends MdlWidget
+class Tab extends MdlWidget
 {
     public $tabs;
-
-    public $active = 1;
 
     public function init()
     {
@@ -43,7 +41,7 @@ class TabView extends MdlWidget
             if (isset($tab['id'])) {
                 $id = $tab[''];
             }
-            if ($index == $this->active) {
+            if ($index == 1) {
                 $active = 'is-active';
             }
             if (isset($tab['tabContent'])) {

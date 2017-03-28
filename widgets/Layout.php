@@ -87,6 +87,8 @@ class Layout extends MdlWidget
 
     public $title;
 
+    public $titleDrawer;
+
     public $headerIcon;
 
     public $background;
@@ -98,6 +100,8 @@ class Layout extends MdlWidget
     public $encodeLabels = true;
 
     public $showMenuOnHeader = true;
+
+    public $footerOptions = [];
 
     public function init()
     {
@@ -116,6 +120,11 @@ class Layout extends MdlWidget
         $title = '';
         if (!is_null($this->title)) {
             $title = Html::tag('span', $this->title, [
+                'class' => 'mdl-layout-title'
+            ]);
+        }
+        if (!is_null($this->titleDrawer)) {
+            $titleDrawer = Html::tag('span', $this->titleDrawer, [
                 'class' => 'mdl-layout-title'
             ]);
         }
@@ -227,6 +236,10 @@ class Layout extends MdlWidget
 
         $drawer = '';
         if ($this->hasDrawer) {
+            if ($titleDrawer) {
+                $title = $titleDrawer;
+            }
+
             $drawer = Html::tag('div', $title . $menu, [
                 'class' => 'mdl-layout__drawer'
             ]);
@@ -265,8 +278,19 @@ class Layout extends MdlWidget
             $this->content .= $tabPages;
         }
 
+        $breadcrumb = Html::tag('div', Breadcrumb::widget([
+                'links' => isset(\Yii::$app->view->params['breadcrumbs']) ? \Yii::$app->view->params['breadcrumbs'] : [],
+            ]), ['class' => 'mdl-breadcrumb-wrapper']) . Html::tag('div', '', ['style' => 'clear:both;']);
+
+
         $footer = '';
-        $main = Html::tag('main', Html::tag('div', $this->content . $footer, ['class' => 'container']), [
+
+        if ($this->footerOptions && count($this->footerOptions)) {
+            $footer = Footer::widget($this->footerOptions);
+        }
+
+
+        $main = Html::tag('main', Html::tag('div', $breadcrumb . $this->content, ['class' => 'container']) . $footer, [
             'class' => 'mdl-layout__content'
         ]);
 

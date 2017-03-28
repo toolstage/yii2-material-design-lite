@@ -1,7 +1,6 @@
 <?php
 
 namespace jonasw91\mdl\helpers;
-use jonasw91\mdl\widgets\RadioButton;
 
 /**
  * Class Html

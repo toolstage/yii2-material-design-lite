@@ -64,7 +64,7 @@ class Button extends MdlWidget
         'effects' => [
             'accent' => true,
             'colored' => false,
-            'primary' => true,
+            'primary' => false,
             'rippleEffect' => true,
         ]
     ];
@@ -104,7 +104,7 @@ class Button extends MdlWidget
         if (!is_null($mdlOptions['action'])) {
             if (strtoupper($mdlOptions['method']) === 'GET' || strtoupper($mdlOptions['method']) === 'POST') {
                 $this->view->registerJs(new JsExpression('$("#' . $this->options['id'] . '").click(function (){
-                    window.location.href = "' . Url::toRoute($mdlOptions['action']) . '";
+                    window.location.href = "' . Url::to($mdlOptions['action']) . '";
                 });'));
             }
             $this->registerDisabledOnClick();
@@ -146,7 +146,9 @@ class Button extends MdlWidget
             'class' => 'material-icons'
         ]);
 
-        $label = Html::tag('span', $this->mdlOptions['label']);
+        $label = Html::tag('span', $this->mdlOptions['label'], [
+            'class' => 'mdl-button-label'
+        ]);
 
         return Html::button($icon . $label . $tooltip, $this->options);
     }
@@ -157,7 +159,6 @@ class Button extends MdlWidget
             var button' . str_replace('-', '', $this->options['id']) . ' =  $("#' . $this->options['id'] . '");
             button' . str_replace('-', '', $this->options['id']) . '.click(function(){
                 $(this).prop ("disabled","true");
-                console.log("HELLO");
                 return false;
             });
         '));

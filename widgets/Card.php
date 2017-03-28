@@ -51,10 +51,31 @@ class Card extends MdlWidget
 
     public $supportingText;
 
+    public $options = [
+    ];
+
     public function init()
     {
         parent::init();
-        $this->options['class'] = 'mdl-card mdl-shadow--' . $this->shadowDepth . 'dp';
+        $class = 'mdl-card mdl-shadow--' . $this->shadowDepth . 'dp';
+        $style = 'margin-bottom:2em;';
+
+        $options = [
+            'id' => $this->getId()
+        ];
+
+        $this->options = array_merge($options, $this->options);
+
+        if (isset($this->options['class'])) {
+            $this->options['class'] = $this->options['class'] . ' ' . $class;
+        } else {
+            $this->options['class'] = $class;
+        }
+        if (isset($this->options['style'])) {
+            $this->options['style'] = $this->options['style'] . ' ' . $style;
+        } else {
+            $this->options['style'] = $style;
+        }
 
         switch ($this->type) {
             case self::TYPE_WIDE:
@@ -68,20 +89,14 @@ class Card extends MdlWidget
             default:
                 break;
         }
-        $options = array_merge($this->options, [
-            'id' => $this->id
-        ]);
-        echo Html::beginTag('div', ['class' => 'card-wrapper mdl-cell mdl-cell--12-col mdl-grid']);
-        echo Html::beginTag('div', $options);
 
+        echo Html::beginTag('div', $this->options);
     }
 
     public function run()
     {
         $content = '';
-        $css = '#' . $this->id . ' {
-            margin: 10px;
-        }';
+        $css = '';
         if ($this->type == self::TYPE_WIDE) {
             $content = $this->renderTitle() .
                 $this->renderSupportingText() .
@@ -98,7 +113,8 @@ class Card extends MdlWidget
             if (!is_null($this->background)) {
                 $css .= '
                  #' . $this->id . ' {
-                    background: url("' . $this->background . '") center / cover;
+                    background: url("' . $this->background . '") center / contain;
+                    background-repeat: no-repeat;
                  }
                  #' . $this->id . ' > .mdl-card__actions {
                     background: rgba(0, 0, 0, 0.2);
@@ -132,7 +148,6 @@ class Card extends MdlWidget
 
         echo $content;
 
-        echo Html::endTag('div');
         echo Html::endTag('div');
     }
 
@@ -170,7 +185,7 @@ class Card extends MdlWidget
         }
         if ($this->type == self::TYPE_WIDE || $this->type == self::TYPE_SQUARE) {
             $css .= '#' . $this->id . ' > .mdl-card__title {
-                background: url("' . $this->titleBackground . '") no-repeat center center #46B6AC;
+                background: url("' . $this->titleBackground . '") no-repeat center center #602135;
                 background-size: cover;
                 color: #fff
             }';

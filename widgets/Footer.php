@@ -7,6 +7,7 @@
  */
 
 namespace jonasw91\mdl\widgets;
+
 use jonasw91\mdl\helpers\Html;
 
 /**
@@ -27,9 +28,9 @@ class Footer extends MdlWidget
     const SECTION_RIGHT = '__right-section';
     const SECTION_DROP_DOWN = '__drop-down-section';
 
-    const LINK_LIST = '__link-list';
-    const SOCIAL_BTN_LIST = '__social-btn';
-    const HEADING = '__heading';
+    const SECTION_TYPE_LINK_LIST = '__link-list';
+    const SECTION_TYPE_SOCIAL_BTN_LIST = '__social-btn';
+    const SECTION_TYPE_HEADING = '__heading';
 
     /**
      * 'items' => [
@@ -52,9 +53,13 @@ class Footer extends MdlWidget
      *
      * @var $items array
      */
-    public $items;
+    public $positions;
+
+    public $positionOptions = [];
 
     public $type;
+
+    public $wrapperOptions = [];
 
     public function init()
     {
@@ -63,159 +68,48 @@ class Footer extends MdlWidget
 
     public function run()
     {
-        $this->items = [
-            self::POSITION_TOP => [
-                [
-                    'sectionType' => self::SECTION_LEFT,
-                    'items' => [
-                        [
-                            'listHeading' => 'Killa',
-                            'listType' => self::SOCIAL_BTN_LIST,
-                            'items' => [
-                                [
-                                    'label' => ' '
-                                ],
-                                [
-                                    'label' => ' ',
-                                ],
-                                [
-                                    'label' => ' ',
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            self::POSITION_MIDDLE => [
-                [
-                    'sectionType' => self::SECTION_DROP_DOWN,
-                    'items' => [
-                        [
-                            'listHeading' => 'Killa',
-                            'listType' => self::LINK_LIST,
-                            'items' => [
-                                [
-                                    'label' => 'Hello asd ',
-                                    'url' => 'asd'
-                                ],
-                                [
-                                    'label' => 'GASd asas dasf ',
-                                    'url' => 'asd'
-                                ],
-                                [
-                                    'label' => 'H asdaddasd ello',
-                                    'url' => 'asd'
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    'sectionType' => self::SECTION_DROP_DOWN,
-                    'items' => [
-                        [
-                            'listHeading' => 'Killa',
-                            'listType' => self::LINK_LIST,
-                            'items' => [
-                                [
-                                    'label' => 'Hello',
-                                    'url' => 'asd'
-                                ],
-                                [
-                                    'label' => 'Hello',
-                                    'url' => 'asd'
-                                ],
-                                [
-                                    'label' => 'Hello',
-                                    'url' => 'asd'
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    'sectionType' => self::SECTION_RIGHT,
-                    'items' => [
-                        [
-                            'listHeading' => 'Killa',
-                            'listType' => self::LINK_LIST,
-                            'items' => [
-                                [
-                                    'label' => 'Hello',
-                                    'url' => 'asd'
-                                ],
-                                [
-                                    'label' => 'Hello',
-                                    'url' => 'asd'
-                                ],
-                                [
-                                    'label' => 'Hello',
-                                    'url' => 'asd'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            self::POSITION_BOTTOM => [
-                [
-                    'sectionType' => self::SECTION_LEFT,
-                    'items' => [
-                        [
-                            'listHeading' => 'Killa',
-                            'listType' => self::LINK_LIST,
-                            'items' => [
-                                [
-                                    'label' => 'Hello',
-                                    'url' => 'asd'
-                                ],
-                                [
-                                    'label' => 'Hello',
-                                    'url' => 'asd'
-                                ],
-                                [
-                                    'label' => 'Hello',
-                                    'url' => 'asd'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
+        $top = '';
+        $middle = '';
+        $bottom = '';
 
-        $top = isset($this->items[self::POSITION_TOP]) ? $this->renderPosition(self::POSITION_TOP, $this->items[self::POSITION_TOP]) : '';
-        $middle = isset($this->items[self::POSITION_MIDDLE]) ? $this->renderPosition(self::POSITION_MIDDLE, $this->items[self::POSITION_MIDDLE]) : '';
-        $bottom = isset($this->items[self::POSITION_BOTTOM]) ? $this->renderPosition(self::POSITION_BOTTOM, $this->items[self::POSITION_BOTTOM]) : '';
+        foreach ($this->positions as $position) {
+            $type = $position['type'];
+            $positionOutput = $this->renderPosition($type, $position);
+            switch ($type) {
+                case self::POSITION_TOP:
+                    $top .= $positionOutput;
+                    break;
+                case self::POSITION_MIDDLE:
+                    $middle .= $positionOutput;
+                    break;
+                case self::POSITION_BOTTOM:
+                    $bottom .= $positionOutput;
+                    break;
+            }
+        }
 
-        return Html::tag('footer', $top . $middle . $bottom, [
+        return Html::tag('footer', Html::tag('div', Html::tag('div', $top . $middle . $bottom, array_merge($this->wrapperOptions, [])), ['class' => 'container']), [
             'class' => $this->type
         ]);
     }
 
-    private function renderPosition($position, $sections)
+    private function renderPosition($positionType, $position)
     {
-        $positionS = '';
-        foreach ($sections as $section) {
-            $type = isset($section['sectionType']) ? $section['sectionType'] : '';
-            $items = isset($section['items']) ? $section['items'] : '';
-            $positionS .= $this->renderSection($type, $items);
+        $positionOutput = '';
+        foreach ($position['sections'] as $section) {
+            $type = isset($section['type']) ? $section['type'] : '';
+            $positionOutput .= $this->renderSection($type, $section);
         }
-        return Html::tag('div', $positionS, [
-            'class' => $this->type . $position
-        ]);
+        return Html::tag('div', Html::tag('div', $positionOutput, [
+            'class' => $this->type . $positionType
+        ]), array_merge($this->positionOptions, [
+
+        ]));
     }
 
-    private function renderSection($sectionType, $items)
+    private function renderSection($sectionType, $section)
     {
-        $section = '';
-        foreach ($items as $item) {
-            $listType = isset($item['listType']) ? $item['listType'] : '';
-            $heading = isset($item['listHeading']) ? $item['listHeading'] : '';
-            $listItems = isset($item['items']) ? $item['items'] : [];
-            $section .= $this->renderItemList($listType, $heading, $listItems);
-        }
-        return Html::tag('div', $section, [
+        return Html::tag('div', $this->renderItemList($section['itemType'], $section['title'], $section['items']), [
             'class' => $this->type . $sectionType
         ]);
     }
@@ -223,13 +117,13 @@ class Footer extends MdlWidget
     private function renderItemList($listType, $heading, $items)
     {
         $list = '';
-        if ($listType == self::LINK_LIST) {
+        if ($listType == self::SECTION_TYPE_LINK_LIST) {
             $checkBox = Html::checkbox('', true, [
                 'class' => $this->type . '__heading-checkbox'
             ]);
 
             $heading = Html::tag('h1', $heading, [
-                'class' => $this->type . self::HEADING
+                'class' => $this->type . self::SECTION_TYPE_HEADING
             ]);
 
             foreach ($items as $item) {
@@ -241,16 +135,17 @@ class Footer extends MdlWidget
                 ]);
             }
             $list = $checkBox . $heading . Html::tag('ul', $list, [
-                    'class' => $this->type . self::LINK_LIST
+                    'class' => $this->type . self::SECTION_TYPE_LINK_LIST
                 ]);
+
         }
-        if ($listType == self::SOCIAL_BTN_LIST) {
+        if ($listType == self::SECTION_TYPE_SOCIAL_BTN_LIST) {
             foreach ($items as $item) {
                 $label = isset($item['label']) ? $item['label'] : '';
                 $url = isset($item['url']) ? $item['url'] : '';
                 $options = isset($item['options']) ? $item['options'] : [];
                 $list .= Html::button($label, array_merge($options, [
-                        'class' => $this->type . self::SOCIAL_BTN_LIST
+                        'class' => $this->type . self::SECTION_TYPE_SOCIAL_BTN_LIST
                     ])) . '\n';
             }
         }

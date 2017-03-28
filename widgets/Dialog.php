@@ -32,7 +32,8 @@ class Dialog extends MdlWidget
         ],
         'actions' => [
 
-        ]
+        ],
+        'actionCancelText' => 'Abbrechen'
     ];
 
     /**
@@ -79,7 +80,7 @@ class Dialog extends MdlWidget
                 'class' => 'close'
             ],
             'mdlOptions' => [
-                'label' => 'Abbrechen'
+                'label' => $this->mdlOptions['actionCancelText']
             ]
         ]);
 
@@ -114,16 +115,7 @@ class Dialog extends MdlWidget
             });
             dialog' . $this->options['id'] . '.querySelector(".close").addEventListener("click",function() {
                 dialog' . $this->options['id'] . '.close();
-            });           
-            
-            $("body").click(function(e) {
-                $(' . $this->options['id'] . ').addClass("animated bounce");
             });
-            
-            $(' . $this->options['id'] . ').one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function() {
-                $(' . $this->options['id'] . ').removeClass("animated bounce");
-            });
-            
         ');
         $this->view->registerJs($js);
     }

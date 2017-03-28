@@ -58,7 +58,7 @@ form {
 .mdl-layout__drawer .mdl-navigation a.mdl-navigation__link button.mdl-button{
     width: 100%;
     height: 100%;
-    padding: 16px 0;
+    padding: 16px;
     margin: 0;
 }
 
@@ -127,8 +127,9 @@ header .mdl-layout__tab-bar-container {
 
 /* Content */
 .mdl-layout__content {
-    padding: 40px 0;
+    padding-top: 2em;
 }
+
 
 /* OTHER SETTING */
 
@@ -217,6 +218,78 @@ i.mdl-list__item-avatar.material-icons {
 
 .mdl-action-bar .mdl-button {
     margin: .125em;
+}
+
+.mdl-layout__drawer .mdl-navigation__link .mdl-button {
+    text-align: left;
+}
+.mdl-layout__drawer .mdl-navigation__link .mdl-button .mdl-button-label {
+    margin-left: 2em;
+}
+
+/* Breadcrumb */
+.mdl-breadcrumbs li {
+    display: inline-block;
+    float: left;
+}
+.mdl-breadcrumbs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.mdl-breadcrumb-wrapper:after {
+    clear: both;
+}
+
+/* Tabel */
+.mdl-data-table th, .mdl-data-table th a {
+    vertical-align: inherit;
+    font-size: inherit;
+    text-transform: uppercase;
+    padding: -0.8em;
+}
+
+tr.mdl-table-header th {
+    padding: 1em;
+}
+
+.mdl-data-table .help-block {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+td button.mdl-button {
+    width: auto!important;
+}
+
+.mdl-data-table td.is-focused::after{
+    visibility: visible;
+    width: 100%;
+}
+
+.mdl-data-table td.has-error::after{
+    visibility: visible;
+    width: 100%;
+    background-color: rgba(255,0,0,1);
+}
+
+.mdl-data-table td::after{
+    background-color: #3f51b5;
+    bottom: 12px;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    visibility: visible;
+    width: 0;
+}
+
+/* Footer */
+.mdl-layout__content > .container {
+    min-height: 570px;
 }
 
 /* Media Queries */
