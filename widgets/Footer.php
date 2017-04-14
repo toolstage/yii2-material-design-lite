@@ -32,6 +32,7 @@ class Footer extends MdlWidget
     const SECTION_TYPE_SOCIAL_BTN_LIST = '__social-btn';
     const SECTION_TYPE_HEADING = '__heading';
 
+
     /**
      * 'items' => [
      *      [
@@ -61,6 +62,11 @@ class Footer extends MdlWidget
 
     public $wrapperOptions = [];
 
+    public $backgroundImg;
+
+    public $backgroundImgOptions = [];
+
+
     public function init()
     {
         parent::init();
@@ -87,8 +93,12 @@ class Footer extends MdlWidget
                     break;
             }
         }
+        $img = '';
+        if ($this->backgroundImg) {
+            $img = Html::img($this->backgroundImg, ['class' => 'footer-img']);
+        }
 
-        return Html::tag('footer', Html::tag('div', Html::tag('div', $top . $middle . $bottom, array_merge($this->wrapperOptions, [])), ['class' => 'container']), [
+        return Html::tag('footer', Html::tag('div', Html::tag('div', $top . $middle . $bottom . $img, array_merge($this->wrapperOptions, [])), ['class' => 'container']), [
             'class' => $this->type
         ]);
     }
@@ -144,9 +154,9 @@ class Footer extends MdlWidget
                 $label = isset($item['label']) ? $item['label'] : '';
                 $url = isset($item['url']) ? $item['url'] : '';
                 $options = isset($item['options']) ? $item['options'] : [];
-                $list .= Html::button($label, array_merge($options, [
-                        'class' => $this->type . self::SECTION_TYPE_SOCIAL_BTN_LIST
-                    ])) . '\n';
+                $list .= Html::a($label, $url, array_merge($options, [
+                    'class' => $this->type . self::SECTION_TYPE_SOCIAL_BTN_LIST
+                ]));
             }
         }
 

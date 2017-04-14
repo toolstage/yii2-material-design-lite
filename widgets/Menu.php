@@ -83,7 +83,7 @@ class Menu extends MdlWidget
         }
         $elements = $button . BaseMenu::widget([
                 'items' => $this->items,
-                'linkTemplate' => '<a class="mdl-menu__item" href="{url}" {options}}>{label}</a>',
+                'linkTemplate' => '<a class="mdl-menu__item" href="{url}" {options}>{label}</a>',
                 'options' => [
                     'class' => $this->mdlOptions['type'] . $effects,
                     'for' => $this->options['id']

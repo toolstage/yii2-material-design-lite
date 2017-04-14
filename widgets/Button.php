@@ -61,6 +61,7 @@ class Button extends MdlWidget
         'label' => 'Button',
         'icon' => null,
         'tooltip' => null,
+        'confirm' => null,
         'effects' => [
             'accent' => true,
             'colored' => false,
@@ -102,9 +103,15 @@ class Button extends MdlWidget
 
         // set action
         if (!is_null($mdlOptions['action'])) {
-            if (strtoupper($mdlOptions['method']) === 'GET' || strtoupper($mdlOptions['method']) === 'POST') {
+            if (strtoupper($mdlOptions['method']) === 'GET') {
                 $this->view->registerJs(new JsExpression('$("#' . $this->options['id'] . '").click(function (){
                     window.location.href = "' . Url::to($mdlOptions['action']) . '";
+                });'));
+            } else if (strtoupper($mdlOptions['method']) === 'POST') {
+                $this->view->registerJs(new JsExpression('$("#' . $this->options['id'] . '").click(function (){
+                    $.post("' . Url::to($mdlOptions['action']) . '", function(resp) {
+                       location.reload();
+                    });
                 });'));
             }
             $this->registerDisabledOnClick();
@@ -149,6 +156,19 @@ class Button extends MdlWidget
         $label = Html::tag('span', $this->mdlOptions['label'], [
             'class' => 'mdl-button-label'
         ]);
+
+        if (isset($this->mdlOptions['confirm'])) {
+            $confirmMessage = $this->mdlOptions['confirm'];
+            echo Dialog::widget([
+                'mdlOptions' => [
+                    'toggleButtonID' => $this->options['id'],
+                    'content' => $confirmMessage,
+                    'header' => 'E-Mail Adressen: ',
+                    'size' => Dialog::SIZE_LARGE,
+                    'actionCancelText' => 'abbrechen'
+                ]
+            ]);
+        }
 
         return Html::button($icon . $label . $tooltip, $this->options);
     }

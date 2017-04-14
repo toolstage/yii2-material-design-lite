@@ -71,9 +71,7 @@ class Card extends MdlWidget
         } else {
             $this->options['class'] = $class;
         }
-        if (isset($this->options['style'])) {
-            $this->options['style'] = $this->options['style'] . ' ' . $style;
-        } else {
+        if (!isset($this->options['style'])) {
             $this->options['style'] = $style;
         }
 
@@ -179,16 +177,16 @@ class Card extends MdlWidget
                 width: auto;
             }
             #' . $this->id . ' > .mdl-card__title {
-                height: ' . $this->titleHeight . 'px;
+                min-height: ' . ($this->titleHeight == 'auto' ? $this->titleHeight : ($this->titleHeight . 'px')) . ';
             }
             ';
         }
         if ($this->type == self::TYPE_WIDE || $this->type == self::TYPE_SQUARE) {
             $css .= '#' . $this->id . ' > .mdl-card__title {
-                background: url("' . $this->titleBackground . '") no-repeat center center #602135;
-                background-size: cover;
-                color: #fff
-            }';
+                    background: url("' . $this->titleBackground . '") no-repeat center center #602135;
+                    background-size: cover;
+                    color: #fff
+                }';
         }
         if ($this->type == self::TYPE_WIDE) {
 

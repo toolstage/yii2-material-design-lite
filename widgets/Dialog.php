@@ -24,6 +24,7 @@ class Dialog extends MdlWidget
         'size' => self::SIZE_SMALL,
         'header' => 'Header',
         'content' => 'Content',
+        'toggleButtonID' => null,
         'toggleButtonOptions' => [
 
         ],
@@ -57,12 +58,15 @@ class Dialog extends MdlWidget
     public function run()
     {
         // render Button
-        $buttonOptions = [
-            'options' => $this->mdlOptions['toggleButtonOptions'],
-            'mdlOptions' => $this->mdlOptions['toggleButtonMdlOptions'],
-        ];
-        $dialogButton = Button::widget($buttonOptions);
-
+        if ($this->mdlOptions['toggleButtonID']) {
+            $this->mdlOptions['toggleButtonOptions']['id'] = $this->mdlOptions['toggleButtonID'];
+        } else {
+            $buttonOptions = [
+                'options' => $this->mdlOptions['toggleButtonOptions'],
+                'mdlOptions' => $this->mdlOptions['toggleButtonMdlOptions'],
+            ];
+            $dialogButton = Button::widget($buttonOptions);
+        }
         // render Dialog
         $header = Html::tag('h4', $this->mdlOptions['header'], ['class' => 'mdl-dialog__title']);
         $content = Html::tag('div', $this->mdlOptions['content'], ['class' => 'mdl-dialog__content']);
@@ -95,11 +99,11 @@ class Dialog extends MdlWidget
 
         echo ($string);
 
-//        echo "<pre>" . htmlspecialchars(var_dump(str_replace(["\n","\r"],"",$dialog))) . "</pre>";
         $this->registerDialogScript();
         $this->registerDialogStyle();
-
-        return $dialogButton;
+        if (isset($dialogButton)) {
+            return $dialogButton;
+        }
     }
 
     protected function registerDialogScript()
