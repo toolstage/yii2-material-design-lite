@@ -74,8 +74,8 @@ class Dialog extends MdlWidget
 
         foreach ($this->mdlOptions['actions'] as $action) {
             $actions .= Button::widget([
-                'options' => $action['options'],
-                'mdlOptions' => $action['mdlOptions']
+                'options' => (isset($action['options']) ? $action['options'] : []),
+                'mdlOptions' => (isset($action['mdlOptions']) ? $action['mdlOptions'] : [])
             ]);
         }
 

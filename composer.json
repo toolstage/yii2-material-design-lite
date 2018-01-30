@@ -1,7 +1,7 @@
 {
   "name": "jonasw91/yii2-material-design-lite",
   "type": "yii2-extension",
-  "version": "1.0.1-dev",
+  "version": "v1.0.2-dev",
   "description": "Yii2 Material Design Lite Extension",
   "keywords": [
     "yii2",
@@ -18,10 +18,11 @@
     }
   ],
   "issues": "https://github.com/JonasW91/yii2-material-design-light/issues",
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "require": {
     "yiisoft/yii2": "*",
-    "bower-asset/dialog-polyfill": "0.4.4",
+	"bower-asset/dialog-polyfill": "*",
     "bower-asset/material-design-lite": "1.2.1",
     "bower-asset/animate.css": "v3.5.2"
   },
@@ -29,5 +30,5 @@
     "psr-4": {
       "jonasw91\\mdl\\": ""
     }
-  }
+  }  
 }
