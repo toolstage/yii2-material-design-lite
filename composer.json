@@ -23,7 +23,7 @@
   "require": {
     "yiisoft/yii2": "*",
 	"bower-asset/dialog-polyfill": "*",
-    "bower-asset/material-design-lite": "1.2.1",
+    "bower-asset/material-design-lite": "1.3.0",
     "bower-asset/animate.css": "v3.5.2"
   },
   "autoload": {
