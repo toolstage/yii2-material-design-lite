@@ -5,6 +5,7 @@
  * Date: 01.08.2016
  * Time: 16:05
  */
+
 namespace jonasw91\mdl\widgets;
 
 use jonasw91\mdl\helpers\Html;
@@ -182,14 +183,17 @@ class Card extends MdlWidget
             ';
         }
         if ($this->type == self::TYPE_WIDE || $this->type == self::TYPE_SQUARE) {
-            $css .= '#' . $this->id . ' > .mdl-card__title {
-                    background: url("' . $this->titleBackground . '") no-repeat center center #602135;
-                    background-size: cover;
-                    color: #fff
-                }';
-        }
-        if ($this->type == self::TYPE_WIDE) {
 
+            $css .= "#$this->id > .mdl-card__title {
+                background-color: #602135;
+                background-size: cover;
+                color: #fff
+            }";
+            if ($this->titleBackground) {
+                $css .= '#' . $this->id . ' > .mdl-card__title {
+                    background: url("' . $this->titleBackground . '") no-repeat center center #602135;
+                }';
+            }
         }
         $this->view->registerCss($css);
         $title = Html::tag('div',

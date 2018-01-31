@@ -48,13 +48,12 @@ class SnackBar extends MdlWidget
 
         $this->initMdlComponent();
 
-        $this->options['id'] = 'staticSnackBar';
         $this->options['aria-live'] = 'assertive';
         $this->options['aria-atomic'] = 'true';
         $this->options['aria-relevant'] = 'text';
 
         if (!is_null($this->mdlOptions['showButton'])) {
-//            $this->registerSnackBarScript();
+            $this->registerSnackBarScript();
         }
     }
 
@@ -70,7 +69,7 @@ class SnackBar extends MdlWidget
     protected function registerSnackBarScript()
     {
         $js = new JsExpression("
-            var notification = document.querySelector('#" . $this->options['id'] . "');
+            var notification = document.querySelector('#" . $this->getId() . "');
             var showButton = document.querySelector ('#" . $this->mdlOptions['showButton'] . "');
             showButton.addEventListener ('click', function(event) {
                 var data = {
